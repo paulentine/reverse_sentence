@@ -1,13 +1,24 @@
 # A method to reverse the words in a sentence, in place.
-# Time complexity: ?
-# Space complexity: ?
+# Time complexity: O(n), where n is length of sentence
+# Space complexity: Optimized O(1), constant since no add'l space req'd
 def reverse_sentence(my_sentence)
   return if !my_sentence || my_sentence.length == 1
   i, j = 0, 0
-  length = my_sentence.length
-  j = length - 1
+  j = my_sentence.length - 1
   reverse_chars(my_sentence, i, j)
   reverse_words(my_sentence)
+  return
+end
+
+def reverse_chars(my_string, starting, ending)
+  temp = ""
+  while starting < ending
+    temp = my_string[starting]
+    my_string[starting] = my_string[ending]
+    my_string[ending] = temp
+    starting += 1
+    ending -= 1
+  end
   return
 end
 
@@ -21,18 +32,6 @@ def reverse_words(my_words)
       reverse_chars(my_words, i, (j - 1))
     end
     i = j + 1
-  end
-  return
-end
-
-def reverse_chars(my_string, starting, ending)
-  temp = ""
-  while starting < ending
-    temp = my_string[starting]
-    my_string[starting] = my_string[ending]
-    my_string[ending] = temp
-    starting += 1
-    ending -= 1
   end
   return
 end
